@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
+
+    <!-- Nội dung cuộn được -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/bottom_bar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Ảnh sản phẩm -->
+            <ImageView
+                android:id="@+id/imageProduct"
+                android:layout_width="match_parent"
+                android:layout_height="338dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/day_chuyen_vang_hong_00a9ab1338"
+                />
+
+            <!-- Giá và giá gạch -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#FFFCFC"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="12dp">
+
+                <TextView
+                    android:id="@+id/textPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="₫137.760"
+                    android:textColor="#D32F2F"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textOldPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+
+                    android:text="₫250.000"
+                    android:textColor="#888888"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <!-- Tên sản phẩm -->
+            <TextView
+                android:id="@+id/textProductName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Quần Âu Nam SOLADO Sidetab..."
+                android:paddingHorizontal="12dp"
+                android:textColor="#000000"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+
+
+            <!-- Mô tả sản phẩm -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Mô tả sản phẩm"
+                android:padding="12dp"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Quần âu nam với thiết kế form dáng Hàn Quốc, chất liệu co giãn nhẹ, thoáng mát. Thích hợp đi làm, đi học, đi chơi..."
+                android:paddingHorizontal="12dp"
+                android:paddingBottom="16dp"
+                android:textColor="#333333"
+                android:textSize="14sp" />
+
+            <!-- Sản phẩm liên quan -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Sản phẩm liên quan"
+                android:padding="12dp"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="100dp">
+
+                <LinearLayout
+                    android:id="@+id/layoutRelated"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <!-- Các sản phẩm liên quan sẽ được thêm tại đây -->
+                </LinearLayout>
+            </HorizontalScrollView>
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Bottom bar -->
+    <LinearLayout
+        android:id="@+id/bottom_bar"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:background="#FAFAFA"
+        android:orientation="horizontal"
+        android:padding="4dp"
+        android:weightSum="3"
+        android:elevation="4dp">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="3">
+            <ImageButton
+                android:id="@+id/btnChat"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:contentDescription="Chat"
+                android:scaleType="centerInside"
+                android:src="@drawable/bubble_chat" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.33">
+        <Button
+            android:id="@+id/btnAddToCart"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Thêm vào Giỏ hàng"
+            android:backgroundTint="#FFB74D"
+            android:textColor="#FFFFFF"
+            android:textAllCaps="false" />
+        </LinearLayout>
+        <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.33">
+        <Button
+            android:id="@+id/btnBuyNow"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Mua ngay"
+            android:backgroundTint="#E64A19"
+            android:textColor="#FFFFFF"
+            android:textAllCaps="false" />
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>
