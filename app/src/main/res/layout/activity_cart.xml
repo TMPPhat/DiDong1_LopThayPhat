@@ -1,69 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/cartLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:background="@android:color/white">
 
-    <!-- Tiêu đề Giỏ hàng -->
-    <TextView
-        android:id="@+id/textViewCartTitle"
-        android:layout_width="wrap_content"
+    <!-- Thanh tiêu đề -->
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="🛒 Giỏ hàng"
-        android:textColor="#FF9800"
-        android:textSize="26sp"
-        android:textStyle="bold"
-        android:layout_marginTop="24dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:orientation="horizontal"
+        android:padding="12dp"
+        android:gravity="center_vertical">
 
-    <!-- Danh sách sản phẩm trong giỏ -->
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@null"
+            android:contentDescription="Quay lại"
+            android:scaleType="centerInside"
+            android:src="@drawable/icons8_back_100"
+            app:tint="#FF5252" />
+
+
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Giỏ hàng (22)"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#000" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sửa"
+            android:textColor="#FF5722"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <!-- Danh sách sản phẩm -->
     <ListView
         android:id="@+id/listViewCart"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:divider="@android:color/darker_gray"
-        android:dividerHeight="1dp"
-        android:padding="8dp"
-        app:layout_constraintTop_toBottomOf="@id/textViewCartTitle"
-        app:layout_constraintBottom_toTopOf="@id/summaryLayout"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:layout_weight="1"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="8dp"
+        android:padding="8dp" />
 
-    <!-- Tổng tiền + Thanh toán -->
+    <!-- Thanh đáy -->
     <LinearLayout
         android:id="@+id/summaryLayout"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:background="#FFF3E0"
-        android:padding="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        android:background="#F6F3F3"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="12dp">
+
+        <CheckBox
+            android:id="@+id/checkboxAll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:text="Tất cả" />
 
         <TextView
             android:id="@+id/textViewTotal"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Tổng tiền: 0đ"
-            android:textColor="#FF9800"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:gravity="end" />
+            android:layout_weight="1"
+            android:gravity="end"
+            android:text="Tổng cộng ₫0"
+            android:textColor="#FF5722"
+            android:textSize="16sp" />
 
         <Button
             android:id="@+id/btnPayment"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_marginTop="12dp"
-            android:text="Thanh toán"
-            android:textColor="@android:color/white"
-            android:backgroundTint="#FF9800"
-            android:textAllCaps="false" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:backgroundTint="#FF5722"
+            android:minWidth="100dp"
+            android:text="Mua hàng (0)"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white" />
     </LinearLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

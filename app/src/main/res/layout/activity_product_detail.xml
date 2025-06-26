@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/main"
     android:background="@android:color/white">
 
     <!-- Nội dung cuộn được -->
@@ -94,20 +95,27 @@
                 android:padding="12dp"
                 android:textSize="16sp"
                 android:textStyle="bold" />
-
-            <HorizontalScrollView
+            <com.example.tranminhphat_2123110213.ExpandableHeightGridView
+                android:id="@+id/SanPhamLienQuan"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingBottom="100dp">
+                android:numColumns="2"
+                android:verticalSpacing="8dp"
+                android:horizontalSpacing="8dp"
+                android:stretchMode="columnWidth" />
+<!--            <HorizontalScrollView-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:paddingBottom="100dp">-->
 
-                <LinearLayout
-                    android:id="@+id/layoutRelated"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <!-- Các sản phẩm liên quan sẽ được thêm tại đây -->
-                </LinearLayout>
-            </HorizontalScrollView>
+<!--                <LinearLayout-->
+<!--                    android:id="@+id/layoutRelated"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="horizontal">-->
+<!--                    &lt;!&ndash; Các sản phẩm liên quan sẽ được thêm tại đây &ndash;&gt;-->
+<!--                </LinearLayout>-->
+<!--            </HorizontalScrollView>-->
         </LinearLayout>
     </ScrollView>
 

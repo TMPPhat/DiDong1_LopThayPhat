@@ -1,12 +1,16 @@
 package com.example.tranminhphat_2123110213;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.cardview.widget.CardView;
 
 import java.util.List;
 
@@ -39,13 +43,34 @@ public class ProductGridAdapter extends BaseAdapter {
         if (convertView == null)
             convertView = LayoutInflater.from(context).inflate(R.layout.item_products, parent, false);
 
+        // View binding
         ImageView img = convertView.findViewById(R.id.imageViewSanPham);
-        TextView txt = convertView.findViewById(R.id.textViewTen);
+        TextView txtTen = convertView.findViewById(R.id.textViewTen);
+        TextView txtGia = convertView.findViewById(R.id.textViewGia);
+        TextView txtDaBan = convertView.findViewById(R.id.textViewDaBan);
+        CardView cardView = convertView.findViewById(R.id.cardViewSanPham);
 
+        // Gán dữ liệu
         Products product = products.get(i);
         img.setImageResource(product.imageResId);
-        txt.setText(product.tenSanPham);
+        txtTen.setText(product.tenSanPham);
+        txtGia.setText("Giá: " + product.gia + "₫");
+        txtDaBan.setText("Đã bán: " + product.daBan);
+
+        // Click ở toàn bộ item
+        cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, ProductDetailActivity.class);
+                intent.putExtra("tenSanPham", product.tenSanPham);
+                intent.putExtra("imageResId", product.imageResId);
+                intent.putExtra("gia", product.gia);
+                intent.putExtra("daBan", product.daBan);
+                context.startActivity(intent);
+            }
+        });
 
         return convertView;
     }
+
 }
