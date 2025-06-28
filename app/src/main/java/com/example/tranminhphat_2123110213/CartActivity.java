@@ -6,6 +6,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -43,22 +45,8 @@ public class CartActivity extends AppCompatActivity {
 
         ListView listView = findViewById(R.id.listViewCart);
 
-        List<Products> gioHang = new ArrayList<>();
-        gioHang.add(new Products(R.drawable.day_chuyen_vang_hong_00a9ab1338, "Nhẫn vàng 24k", 120000, 35));
-        gioHang.add(new Products(R.drawable.day_chuyen_vang_hong_00a9ab1338, "Vòng tay bạc", 120000, 35));
-        gioHang.add(new Products(R.drawable.day_chuyen_vang_hong_00a9ab1338, "Dây chuyền đá quý", 120000, 35));
-        gioHang.add(new Products(R.drawable.day_chuyen_vang_hong_00a9ab1338, "Nhẫn vàng 24k", 120000, 35));
-        gioHang.add(new Products(R.drawable.day_chuyen_vang_hong_00a9ab1338, "Vòng tay bạc", 120000, 35));
-        gioHang.add(new Products(R.drawable.day_chuyen_vang_hong_00a9ab1338, "Dây chuyền đá quý", 120000, 35));
-        gioHang.add(new Products(R.drawable.day_chuyen_vang_hong_00a9ab1338, "Nhẫn vàng 24k", 120000, 35));
-        gioHang.add(new Products(R.drawable.day_chuyen_vang_hong_00a9ab1338, "Vòng tay bạc", 120000, 35));
-        gioHang.add(new Products(R.drawable.day_chuyen_vang_hong_00a9ab1338, "Dây chuyền đá quý", 120000, 35));
-        gioHang.add(new Products(R.drawable.day_chuyen_vang_hong_00a9ab1338, "Nhẫn vàng 24k", 120000, 35));
-        gioHang.add(new Products(R.drawable.day_chuyen_vang_hong_00a9ab1338, "Vòng tay bạc", 120000, 35));
-        gioHang.add(new Products(R.drawable.day_chuyen_vang_hong_00a9ab1338, "Dây chuyền đá quý", 120000, 35));
-        gioHang.add(new Products(R.drawable.day_chuyen_vang_hong_00a9ab1338, "Nhẫn vàng 24k", 120000, 35));
-        gioHang.add(new Products(R.drawable.day_chuyen_vang_hong_00a9ab1338, "Vòng tay bạc", 120000, 35));
-        gioHang.add(new Products(R.drawable.day_chuyen_vang_hong_00a9ab1338, "Dây chuyền đá quý", 120000, 35));
+        List<Products> gioHang = CartManager.getCartList();
+
 
         CartAdapter adapter = new CartAdapter(this, gioHang);
         listView.setAdapter(adapter);
@@ -66,6 +54,20 @@ public class CartActivity extends AppCompatActivity {
 
         ImageButton btnBack = findViewById(R.id.btnBack);
         btnBack.setOnClickListener(v -> finish());
+
+        TextView btnDelete = findViewById(R.id.textDelete); // phải có id này trong layout XML
+        btnDelete.setOnClickListener(v -> {
+            List<Products> selectedItems = adapter.getSelectedItems();
+            if (selectedItems.isEmpty()) {
+                Toast.makeText(this, "Bạn chưa chọn sản phẩm nào để xóa", Toast.LENGTH_SHORT).show();
+            } else {
+                CartManager.getCartList().removeAll(selectedItems); // cập nhật dữ liệu toàn cục nếu cần
+                adapter.removeItems(selectedItems);                 // cập nhật giao diện
+                Toast.makeText(this, "Đã xóa sản phẩm", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
 
     }
 }

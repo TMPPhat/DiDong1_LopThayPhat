@@ -13,6 +13,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/white"
         android:orientation="vertical"
         android:padding="8dp">
 
@@ -20,34 +21,34 @@
             android:id="@+id/imageViewSanPham"
             android:layout_width="match_parent"
             android:layout_height="140dp"
-            android:scaleType="centerCrop"
-            android:contentDescription="@string/app_name" />
+            android:contentDescription="@string/app_name"
+            android:scaleType="centerCrop" />
 
         <TextView
             android:id="@+id/textViewTen"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="6dp"
+            android:textColor="#333333"
             android:textSize="13sp"
-            android:textStyle="bold"
-            android:textColor="#333333" />
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/textViewGia"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="13sp"
+            android:paddingTop="2dp"
             android:textColor="#FF5722"
-            android:paddingTop="2dp" />
+            android:textSize="13sp" />
 
         <TextView
             android:id="@+id/textViewDaBan"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="12sp"
-            android:textColor="#757575"
             android:paddingTop="2dp"
-            android:text="Đã bán: 0" />
+            android:text="Đã bán: 0"
+            android:textColor="#757575"
+            android:textSize="12sp" />
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>

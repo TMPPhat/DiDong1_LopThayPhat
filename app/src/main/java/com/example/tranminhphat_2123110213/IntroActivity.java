@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class IntroActivity extends AppCompatActivity {
 
-    private static final int SPLASH_TIME = 2000; // 2 giây
+    private static final int SPLASH_TIME = 5000; // 2 giây
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,7 +20,7 @@ public class IntroActivity extends AppCompatActivity {
 
         if (!isFirstLaunch) {
             // Không phải lần đầu → chuyển thẳng sang HomeActivity
-            startActivity(new Intent(IntroActivity.this, HomeActivity.class));
+            startActivity(new Intent(IntroActivity.this, MainActivity.class));
             finish();
             return;
         }

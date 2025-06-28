@@ -1,15 +1,20 @@
 package com.example.tranminhphat_2123110213;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class PaymentActivity extends AppCompatActivity {
 
@@ -19,14 +24,14 @@ public class PaymentActivity extends AppCompatActivity {
     private TextView txtTotal;
     private Button btnConfirm;
 
-    private int tongTien = 1200000; // Giả định tổng tiền cố định
+    private int tongTien = 1200000; // Tổng tiền cố định
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_payment);
+        setContentView(R.layout.activity_payment); // Layout đã sửa
 
-        // Ánh xạ
+        // Ánh xạ view
         edtName = findViewById(R.id.editTextName);
         edtAddress = findViewById(R.id.editTextAddress);
         edtPhone = findViewById(R.id.editTextPhone);
@@ -35,17 +40,37 @@ public class PaymentActivity extends AppCompatActivity {
         radioOnline = findViewById(R.id.radioOnline);
         txtTotal = findViewById(R.id.textTotal);
         btnConfirm = findViewById(R.id.btnConfirmPayment);
+        LinearLayout cartItemsContainer = findViewById(R.id.cartItemsContainer);
 
-        // Hiển thị tổng tiền
+        // Gán tổng tiền
         txtTotal.setText("Tổng tiền: " + tongTien + "đ");
 
         // Sự kiện xác nhận
-        btnConfirm.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                xuLyThanhToan();
-            }
-        });
+        btnConfirm.setOnClickListener(v -> xuLyThanhToan());
+
+        // Tạo danh sách sản phẩm
+        List<Products> gioHang = new ArrayList<>();
+        gioHang.add(new Products(R.drawable.day_chuyen_vang_hong_00a9ab1338, "Dây chuyền đá quý", 120000, 35));
+        gioHang.add(new Products(R.drawable.day_chuyen_vang_hong_00a9ab1338, "Nhẫn vàng 24k", 120000, 35));
+        gioHang.add(new Products(R.drawable.day_chuyen_vang_hong_00a9ab1338, "Vòng tay bạc", 120000, 35));
+        gioHang.add(new Products(R.drawable.day_chuyen_vang_hong_00a9ab1338, "Lắc tay vàng", 120000, 35));
+
+        // Inflate từng item vào LinearLayout
+        for (Products product : gioHang) {
+            View itemView = LayoutInflater.from(this).inflate(R.layout.item_cart_payment, cartItemsContainer, false);
+
+            TextView txtName = itemView.findViewById(R.id.textName);
+            TextView txtPrice = itemView.findViewById(R.id.textPrice);
+            TextView txtQuantity = itemView.findViewById(R.id.textQuantity);
+            android.widget.ImageView img = itemView.findViewById(R.id.imageProduct);
+
+            txtName.setText(product.getName());
+            txtPrice.setText(product.getPrice() + "đ");
+            txtQuantity.setText("SL: " + product.getQuantity());
+            img.setImageResource(product.getImage());
+
+            cartItemsContainer.addView(itemView);
+        }
     }
 
     private void xuLyThanhToan() {
@@ -66,7 +91,6 @@ public class PaymentActivity extends AppCompatActivity {
 
         String phuongThuc = (selectedId == R.id.radioCOD) ? "Thanh toán khi nhận hàng" : "Chuyển khoản ngân hàng";
 
-        // Xử lý logic thanh toán (hiện tại chỉ hiển thị thông báo)
         String thongTin = "Tên: " + ten +
                 "\nĐịa chỉ: " + diaChi +
                 "\nSĐT: " + soDT +
@@ -74,10 +98,5 @@ public class PaymentActivity extends AppCompatActivity {
                 "\nTổng tiền: " + tongTien + "đ";
 
         Toast.makeText(this, "Đặt hàng thành công!\n" + thongTin, Toast.LENGTH_LONG).show();
-
-        // Sau khi xác nhận có thể:
-        // - Gửi dữ liệu về server
-        // - Điều hướng sang màn hình "Cảm ơn"
-        // - Xóa giỏ hàng, v.v.
     }
 }

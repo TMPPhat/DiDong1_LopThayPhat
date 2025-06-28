@@ -7,7 +7,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ViewFlipper;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -34,6 +36,27 @@ public class HomeActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        //SliderBanner
+        ViewFlipper bannerFlipper = findViewById(R.id.bannerFlipper);
+
+        // Danh sách ảnh banner (thay bằng ảnh thật của bạn)
+        int[] banners = {
+                R.drawable.banner1,
+                R.drawable.banner2,
+                R.drawable.banner3,
+                R.drawable.banner4,
+        };
+
+        for (int banner : banners) {
+            ImageView img = new ImageView(this);
+            img.setImageResource(banner);
+            img.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            bannerFlipper.addView(img);
+        }
+
+
+
 
         ImageButton btnCart = findViewById(R.id.btnCart);
 
@@ -72,19 +95,19 @@ public class HomeActivity extends AppCompatActivity {
         bottomNav.setOnItemSelectedListener(item -> {
             int id = item.getItemId();
             if (id == R.id.nav_home) {
-                Intent it = new Intent(getApplicationContext(), CartActivity.class);
+                Intent it = new Intent(getApplicationContext(), HomeActivity.class);
                 startActivity(it);
                 return true;
             } else if (id == R.id.nav_profile) {
-                Intent it = new Intent(getApplicationContext(), CartActivity.class);
+                Intent it = new Intent(getApplicationContext(), FragmentProfileActivity.class);
                 startActivity(it);
                 return true;
             } else if (id == R.id.nav_products) {
-                Intent it = new Intent(getApplicationContext(), CartActivity.class);
+                Intent it = new Intent(getApplicationContext(), AllProductsActivity.class);
                 startActivity(it);
                 return true;
-            } else if (id == R.id.nav_chat) {
-                Intent it = new Intent(getApplicationContext(), CartActivity.class);
+            } else if (id == R.id.nav_order) {
+                Intent it = new Intent(getApplicationContext(), OrdersActivity.class);
                 startActivity(it);
                 return true;
             }

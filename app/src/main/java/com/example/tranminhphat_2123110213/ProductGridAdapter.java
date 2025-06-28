@@ -69,7 +69,6 @@ public class ProductGridAdapter extends BaseAdapter {
                 context.startActivity(intent);
             }
         });
-
         return convertView;
     }
 

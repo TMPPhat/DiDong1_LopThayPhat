@@ -1,36 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/main"
+    android:fitsSystemWindows="true"
     android:background="@android:color/white">
 
     <!-- Nội dung cuộn được -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/bottom_bar">
+        android:layout_above="@id/layoutBottomAction">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+            <!-- Thanh tiêu đề tìm kiếm và icon -->
+            <LinearLayout
+                android:id="@+id/headerLayout"
+                android:layout_width="match_parent"
+                android:layout_height="63dp"
+                android:background="#FF5722"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="8dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
 
+                <!-- Thanh tìm kiếm -->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:background="@android:color/white"
+                    app:cardCornerRadius="8dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingStart="8dp">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@android:drawable/ic_menu_search"
+                            app:tint="#888888" />
+
+                        <EditText
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@null"
+                            android:hint="Tìm kiếm..."
+                            android:textColorHint="@android:color/darker_gray"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <!-- Nút giỏ hàng -->
+                <ImageButton
+                    android:id="@+id/btnCart"
+                    android:layout_width="34dp"
+                    android:layout_height="34dp"
+                    android:layout_marginStart="8dp"
+                    android:background="@android:color/transparent"
+                    android:scaleType="centerInside"
+                    android:contentDescription="Giỏ hàng"
+                    app:srcCompat="@drawable/icons8_shopping_cart_48" />
+
+            </LinearLayout>
             <!-- Ảnh sản phẩm -->
             <ImageView
                 android:id="@+id/imageProduct"
                 android:layout_width="match_parent"
                 android:layout_height="338dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/day_chuyen_vang_hong_00a9ab1338"
-                />
+                android:src="@drawable/day_chuyen_vang_hong_00a9ab1338" />
 
             <!-- Giá và giá gạch -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#FFFCFC"
+                android:background="#FBF5F3"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
                 android:padding="12dp">
@@ -49,52 +105,197 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="12dp"
-
                     android:text="₫250.000"
                     android:textColor="#888888"
                     android:textSize="14sp" />
             </LinearLayout>
-
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#DDDDDD" />
             <!-- Tên sản phẩm -->
             <TextView
                 android:id="@+id/textProductName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Quần Âu Nam SOLADO Sidetab..."
                 android:paddingHorizontal="12dp"
+                android:padding="12dp"
+                android:text="Quần Âu Nam SOLADO Sidetab..."
                 android:textColor="#000000"
                 android:textSize="16sp"
                 android:textStyle="bold" />
-
-
-
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#DDDDDD" />
             <!-- Mô tả sản phẩm -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Mô tả sản phẩm"
                 android:padding="12dp"
+                android:text="Mô tả sản phẩm"
+                android:textColor="#686767"
                 android:textSize="16sp"
                 android:textStyle="bold" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#DDDDDD" />
 
             <TextView
                 android:id="@+id/textDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Quần âu nam với thiết kế form dáng Hàn Quốc, chất liệu co giãn nhẹ, thoáng mát. Thích hợp đi làm, đi học, đi chơi..."
                 android:paddingHorizontal="12dp"
                 android:paddingBottom="16dp"
+                android:text="Quần âu nam với thiết kế form dáng Hàn Quốc, chất liệu co giãn nhẹ, thoáng mát. Thích hợp đi làm, đi học, đi chơi..."
                 android:textColor="#333333"
                 android:textSize="14sp" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#DDDDDD" />
+            <!-- Đánh giá sản phẩm -->
+<!--            <TextView-->
+<!--                android:layout_width="20dp"-->
+<!--                android:layout_height="20dp"-->
+<!--                android:drawableStart="@drawable/img_star"-->
+<!--                android:drawablePadding="6dp"-->
+<!--                android:padding="12dp"-->
+<!--                android:text="Đánh Giá Sản Phẩm (303)"-->
+<!--                android:textColor="#000000"-->
+<!--                android:textSize="16sp"-->
+<!--                android:textStyle="bold" />-->
+
+            <!-- Tóm tắt đánh giá -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="4dp"
+                app:cardBackgroundColor="@android:color/white">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="12dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Tóm tắt đánh giá sản phẩm ✨"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:textColor="#212121"
+                        android:layout_marginBottom="6dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Sản phẩm giao nhanh, đóng gói cẩn thận, tặng kèm hấp dẫn. Hài lòng với chất lượng."
+                        android:textSize="14sp"
+                        android:textColor="#444444" />
+
+                    <!-- Hình ảnh -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="8dp"
+                        android:gravity="center_vertical">
+
+                        <ImageView
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:src="@drawable/day_chuyen_vang_hong_00a9ab1338"
+                            android:scaleType="centerCrop"
+                            android:layout_marginEnd="6dp"/>
+
+                        <ImageView
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:src="@drawable/day_chuyen_vang_hong_00a9ab1338"
+                            android:scaleType="centerCrop"
+                            android:layout_marginEnd="6dp"/>
+
+                        <ImageView
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:src="@drawable/day_chuyen_vang_hong_00a9ab1338"
+                            android:scaleType="centerCrop"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Một đánh giá cụ thể -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingHorizontal="12dp"
+                android:paddingBottom="16dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="diem_huong8899"
+                    android:textStyle="bold"
+                    android:textSize="14sp"
+                    android:textColor="#212121"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Phân loại: 60 Ngày"
+                    android:textColor="#888888"
+                    android:textSize="12sp"
+                    android:layout_marginTop="2dp"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Giao hàng nhanh. Đóng gói đẹp. Sản phẩm chưa dùng bao giờ nên chưa có đánh giá. Mong rằng nó sẽ hiệu quả."
+                    android:textColor="#444444"
+                    android:textSize="14sp"
+                    android:layout_marginTop="6dp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="6dp">
+
+                    <ImageView
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_marginEnd="6dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/day_chuyen_vang_hong_00a9ab1338" />
+
+                    <ImageView
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:src="@drawable/day_chuyen_vang_hong_00a9ab1338"
+                        android:scaleType="centerCrop"
+                        android:layout_marginEnd="6dp"/>
+                </LinearLayout>
+            </LinearLayout>
 
             <!-- Sản phẩm liên quan -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Sản phẩm liên quan"
+                android:textColor="#686767"
                 android:padding="12dp"
                 android:textSize="16sp"
                 android:textStyle="bold" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#DDDDDD" />
             <com.example.tranminhphat_2123110213.ExpandableHeightGridView
                 android:id="@+id/SanPhamLienQuan"
                 android:layout_width="match_parent"
@@ -103,74 +304,74 @@
                 android:verticalSpacing="8dp"
                 android:horizontalSpacing="8dp"
                 android:stretchMode="columnWidth" />
-<!--            <HorizontalScrollView-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:paddingBottom="100dp">-->
 
-<!--                <LinearLayout-->
-<!--                    android:id="@+id/layoutRelated"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:orientation="horizontal">-->
-<!--                    &lt;!&ndash; Các sản phẩm liên quan sẽ được thêm tại đây &ndash;&gt;-->
-<!--                </LinearLayout>-->
-<!--            </HorizontalScrollView>-->
         </LinearLayout>
     </ScrollView>
 
-    <!-- Bottom bar -->
+    <!-- Thanh chức năng dưới cùng -->
     <LinearLayout
-        android:id="@+id/bottom_bar"
+        android:id="@+id/layoutBottomAction"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_alignParentBottom="true"
-        android:background="#FAFAFA"
-        android:orientation="horizontal"
-        android:padding="4dp"
-        android:weightSum="3"
-        android:elevation="4dp">
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="3">
-            <ImageButton
-                android:id="@+id/btnChat"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@android:color/transparent"
-                android:contentDescription="Chat"
-                android:scaleType="centerInside"
-                android:src="@drawable/bubble_chat" />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.33">
-        <Button
-            android:id="@+id/btnAddToCart"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="Thêm vào Giỏ hàng"
-            android:backgroundTint="#FFB74D"
-            android:textColor="#FFFFFF"
-            android:textAllCaps="false" />
-        </LinearLayout>
-        <LinearLayout
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="0.33">
-        <Button
-            android:id="@+id/btnBuyNow"
+        android:orientation="horizontal"
+        android:background="@android:color/white"
+        android:gravity="center_vertical"
+        android:layout_alignParentBottom="true"
+        android:elevation="8dp">
+
+        <!-- Chat -->
+        <LinearLayout
             android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="Mua ngay"
-            android:backgroundTint="#E64A19"
-            android:textColor="#FFFFFF"
-            android:textAllCaps="false" />
+            android:layout_height="wrap_content"
+            android:layout_weight="0.6"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_chat" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Chat ngay"
+                android:textColor="#000000"
+                android:textSize="12sp"/>
         </LinearLayout>
+
+        <!-- Giỏ hàng -->
+        <LinearLayout
+            android:id="@+id/layoutAddToCart"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.9"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/add_shopping_140dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Thêm vào Giỏ hàng"
+                android:textColor="#000000"
+                android:textSize="12sp"/>
+        </LinearLayout>
+
+        <!-- Mua ngay -->
+        <Button
+            android:id="@+id/btnBuy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.2"
+            android:text="Mua ngay"
+            android:textColor="@android:color/white"
+            android:backgroundTint="#F44336"
+            android:paddingLeft="24dp"
+            android:paddingRight="24dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"/>
     </LinearLayout>
 </RelativeLayout>

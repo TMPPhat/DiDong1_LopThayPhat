@@ -1,16 +1,19 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Theme.TranMinhPhat_2123110213" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_200</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
-        <item name="colorOnPrimary">@color/black</item>
-        <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/teal_200</item>
-        <item name="colorSecondaryVariant">@color/teal_200</item>
-        <item name="colorOnSecondary">@color/black</item>
-        <!-- Status bar color. -->
-        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
-        <!-- Customize your theme here. -->
+    <style name="Theme.App.Light" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color: Cam -->
+        <item name="colorPrimary">#FF9800</item>            <!-- Cam -->
+        <item name="colorPrimaryVariant">#F57C00</item>     <!-- Cam đậm -->
+        <item name="colorOnPrimary">#FFFFFF</item>          <!-- Trắng (nút trên nền cam) -->
+
+        <!-- Secondary brand color -->
+        <item name="colorSecondary">#FFB74D</item>          <!-- Cam nhạt -->
+        <item name="colorSecondaryVariant">#FFE0B2</item>   <!-- Cam rất nhạt -->
+        <item name="colorOnSecondary">#000000</item>        <!-- Đen -->
+
+        <!-- Status bar -->
+        <item name="android:statusBarColor">#F57C00</item>  <!-- Màu cam đậm -->
+
+        <!-- Nền app -->
+        <item name="android:windowBackground">@android:color/white</item>
     </style>
 </resources>

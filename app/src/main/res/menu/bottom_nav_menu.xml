@@ -7,7 +7,7 @@
     <item
         android:id="@+id/nav_products"
         android:icon="@drawable/ic_all_products"
-        android:title="Tất cả sản phẩm" />
+        android:title="Tất cả" />
 
     <item
         android:id="@+id/nav_chat"
@@ -20,5 +20,5 @@
     <item
         android:id="@+id/nav_profile"
         android:icon="@drawable/ic_user"
-        android:title="Trang của tôi" />
+        android:title="Tôi" />
 </menu>

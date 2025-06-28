@@ -39,8 +39,12 @@ public class MainActivity extends AppCompatActivity {
                 String txtPwd = objPwd.getText().toString();
 
                 if (txtEmail.equals("admin@gmail.com") && txtPwd.equals("123")) {
-                    Intent it = new Intent(getApplicationContext(), HomeActivity.class);
-                    startActivity(it);
+                    Toast.makeText(getApplicationContext(), "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
+                    new android.os.Handler().postDelayed(() -> {
+                        Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                        startActivity(intent);
+                        finish(); // đóng RegisterActivity để không quay lại bằng nút Back
+                    }, 500);
                 }else {
                     Toast.makeText(getApplicationContext(), "Đăng nhập thất bại", Toast.LENGTH_LONG).show();
                 }

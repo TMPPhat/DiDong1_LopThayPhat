@@ -1,9 +1,12 @@
 package com.example.tranminhphat_2123110213;
 
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -57,6 +60,24 @@ public class ProductDetailActivity extends AppCompatActivity {
 
         ExpandableHeightGridView gridViewLienQuan = findViewById(R.id.SanPhamLienQuan);
         gridViewLienQuan.setExpanded(true);
+
+
+        TextView textOldPrice = findViewById(R.id.textOldPrice);;
+        textOldPrice.setPaintFlags(textOldPrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+
+        LinearLayout layoutAddToCart = findViewById(R.id.layoutAddToCart);
+
+        layoutAddToCart.setOnClickListener(v -> {
+            // Lấy dữ liệu sản phẩm
+            int gia = 120000; // hoặc lấy từ TextView nếu có
+
+            // Tạo sản phẩm và thêm vào giỏ
+            Products p = new Products(imageResId, tenSanPham, gia, 35);
+            CartManager.addToCart(p);
+
+            Toast.makeText(this, "Đã thêm vào giỏ hàng", Toast.LENGTH_SHORT).show();
+        });
+
     }
 
 
