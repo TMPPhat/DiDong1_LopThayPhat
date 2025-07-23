@@ -20,7 +20,7 @@ public class IntroActivity extends AppCompatActivity {
 
         if (!isFirstLaunch) {
             // Không phải lần đầu → chuyển thẳng sang HomeActivity
-            startActivity(new Intent(IntroActivity.this, MainActivity.class));
+            startActivity(new Intent(IntroActivity.this, LoginActivity.class));
             finish();
             return;
         }
@@ -35,7 +35,7 @@ public class IntroActivity extends AppCompatActivity {
             editor.putBoolean("first_launch", false);
             editor.apply();
 
-            startActivity(new Intent(IntroActivity.this, MainActivity.class));
+            startActivity(new Intent(IntroActivity.this, LoginActivity.class));
             finish();
         }, SPLASH_TIME);
     }

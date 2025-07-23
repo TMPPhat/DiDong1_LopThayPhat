@@ -15,24 +15,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
-    <!-- Ví dụ các tùy chọn lọc -->
-    <CheckBox
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Nhẫn"
-        android:textSize="16sp" />
+        android:layout_height="wrap_content">
 
-    <CheckBox
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Vòng tay"
-        android:textSize="16sp" />
+        <LinearLayout
+            android:id="@+id/categoryCheckboxContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+    </ScrollView>
 
-    <CheckBox
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Dây chuyền"
-        android:textSize="16sp" />
 
     <Button
         android:id="@+id/btnApplyFilter"

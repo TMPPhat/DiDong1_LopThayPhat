@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -17,27 +16,36 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class MainActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
 
-    EditText objEmail, objPwd;
-    Button btnLogin, btnRegister;
-    RequestQueue mRequestQueue;
-    String apiUrl = "https://6868e32ed5933161d70cbd84.mockapi.io/api/users"; // API kiểm tra tài khoản
+    private EditText objEmail, objPwd;
+    private Button btnLogin, btnRegister;
+    private RequestQueue mRequestQueue;
+
+    private static final String API_URL = "https://api.baserow.io/api/database/rows/table/604717/?user_field_names=true";
+    private static final String TOKEN = "Token A1Qn1X9pYbQyNahPGDWHlEdpbMd6qDBj";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Nếu đã đăng nhập -> chuyển sang Home luôn
+        UserManager userManager = new UserManager(this);
+        if (userManager.isLoggedIn()) {
+            startActivity(new Intent(this, HomeActivity.class));
+            finish(); // đóng LoginActivity
+            return;
+        }
+
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_login);
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -55,8 +63,8 @@ public class MainActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(v -> login());
 
         btnRegister.setOnClickListener(v -> {
-            Intent it = new Intent(getApplicationContext(), RegisterActivity.class);
-            startActivity(it);
+            Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+            startActivity(intent);
         });
     }
 
@@ -69,21 +77,43 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
-        StringRequest request = new StringRequest(Request.Method.GET, apiUrl,
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, API_URL, null,
                 response -> {
                     try {
-                        JSONArray users = new JSONArray(response);
+                        JSONArray users = response.getJSONArray("results");
                         boolean loginSuccess = false;
 
                         for (int i = 0; i < users.length(); i++) {
                             JSONObject user = users.getJSONObject(i);
 
-                            String email = user.getString("email");
-                            String password = user.getString("password");
-                            String username = user.getString("username"); // nếu bạn cần dùng sau
+                            String email = user.optString("email");
+                            String password = user.optString("password");
+
+                            String avatarUrl = "";
+                            JSONArray imageArray = user.optJSONArray("image");
+                            if (imageArray != null && imageArray.length() > 0) {
+                                JSONObject imageObj = imageArray.getJSONObject(0);
+                                JSONObject thumbnails = imageObj.getJSONObject("thumbnails");
+                                avatarUrl = thumbnails.getJSONObject("small").getString("url");
+                            }
 
                             if (emailInput.equalsIgnoreCase(email) && pwdInput.equals(password)) {
                                 loginSuccess = true;
+
+                                User userObj = new User(
+                                        user.optInt("id"),
+                                        user.optString("name"),
+                                        email,
+                                        user.optString("phone"),
+                                        user.optString("birthday"),
+                                        avatarUrl,
+                                        user.optString("fullname"),
+                                        user.optString("gender"),
+                                        user.optString("address")
+                                );
+
+                                UserManager userManager = new UserManager(this);
+                                userManager.saveUser(userObj);
                                 break;
                             }
                         }
@@ -91,9 +121,9 @@ public class MainActivity extends AppCompatActivity {
                         if (loginSuccess) {
                             Toast.makeText(this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
                             new Handler().postDelayed(() -> {
-                                startActivity(new Intent(this, HomeActivity.class));
+                                startActivity(new Intent(LoginActivity.this, HomeActivity.class));
                                 finish();
-                            }, 100);
+                            }, 500);
                         } else {
                             Toast.makeText(this, "Sai email hoặc mật khẩu", Toast.LENGTH_LONG).show();
                         }
@@ -106,11 +136,15 @@ public class MainActivity extends AppCompatActivity {
                 error -> {
                     Log.e("LOGIN_API", "Lỗi kết nối: " + error.toString());
                     Toast.makeText(this, "Không kết nối được đến máy chủ", Toast.LENGTH_LONG).show();
-                });
+                }) {
+            @Override
+            public java.util.Map<String, String> getHeaders() {
+                java.util.Map<String, String> headers = new java.util.HashMap<>();
+                headers.put("Authorization", TOKEN);
+                return headers;
+            }
+        };
 
         mRequestQueue.add(request);
     }
-
-
-
 }

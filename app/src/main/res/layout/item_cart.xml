@@ -1,26 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:background="@android:color/white"
     android:padding="8dp">
-
 
     <!-- Thông tin sản phẩm -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="8dp">
+        android:layout_marginTop="8dp"
+        android:gravity="top">
 
+        <!-- Checkbox -->
         <CheckBox
             android:id="@+id/checkboxItem"
-            android:layout_marginTop="15dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp" />
 
+        <!-- Ảnh sản phẩm -->
         <ImageView
             android:id="@+id/imageCartProduct"
             android:layout_width="80dp"
@@ -29,6 +31,7 @@
             android:scaleType="centerCrop"
             android:src="@drawable/ic_launcher_background" />
 
+        <!-- Phần thông tin chi tiết -->
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -36,26 +39,42 @@
             android:orientation="vertical"
             android:layout_marginStart="8dp">
 
+            <!-- Tên sản phẩm -->
             <TextView
                 android:id="@+id/textCartName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Tên sản phẩm"
                 android:textColor="#000"
-                android:maxLines="2"
                 android:textSize="14sp"
+                android:maxLines="2"
                 android:ellipsize="end" />
 
-            <TextView
-                android:id="@+id/textCartOption"
-                android:layout_width="wrap_content"
+            <!-- Thương hiệu -->
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Màu: Trắng, Size: M"
-                android:textColor="#757575"
-                android:textSize="12sp"
-                android:layout_marginTop="4dp" />
+                android:orientation="horizontal"
+                android:layout_marginTop="4dp"
+                android:gravity="center_vertical">
 
-            <!-- Giá và nút số lượng -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Thương hiệu: "
+                    android:textColor="#757575"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/textCartOption"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Onion"
+                    android:textColor="#757575"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <!-- Giá + nút tăng giảm -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -63,6 +82,7 @@
                 android:layout_marginTop="8dp"
                 android:gravity="center_vertical">
 
+                <!-- Giá -->
                 <TextView
                     android:id="@+id/textCartPrice"
                     android:layout_width="0dp"
@@ -73,6 +93,7 @@
                     android:textSize="14sp"
                     android:textStyle="bold" />
 
+                <!-- Nút số lượng -->
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -81,6 +102,7 @@
                     android:background="@drawable/border">
 
                     <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnMinus"
                         android:layout_width="32dp"
                         android:layout_height="32dp"
                         android:text="-"
@@ -96,6 +118,7 @@
                         android:padding="0dp" />
 
                     <EditText
+                        android:id="@+id/editTextQty"
                         android:layout_width="36dp"
                         android:layout_height="32dp"
                         android:background="@android:color/transparent"
@@ -108,6 +131,7 @@
                         android:textSize="14sp" />
 
                     <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnPlus"
                         android:layout_width="32dp"
                         android:layout_height="32dp"
                         android:text="+"
@@ -122,13 +146,14 @@
                         android:insetBottom="0dp"
                         android:padding="0dp" />
                 </LinearLayout>
-
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
+
+    <!-- Gạch ngăn cách -->
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="#DDDDDD"
-        android:layout_marginTop="8dp"/>
+        android:layout_marginTop="8dp" />
 </LinearLayout>

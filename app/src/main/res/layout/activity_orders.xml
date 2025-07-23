@@ -47,109 +47,12 @@
         android:padding="8dp">
 
         <LinearLayout
+            android:id="@+id/danhSachDonHang"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <!-- PHẦN 1: Chờ xác nhận -->
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Chờ xác nhận"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:textColor="#FF9800"
-                android:padding="8dp" />
-
-            <!-- Một đơn hàng -->
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                app:cardElevation="4dp"
-                app:cardCornerRadius="8dp">
-
-                <LinearLayout
-                    android:id="@+id/orderDetail"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="12dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Mã đơn: #123456"
-                        android:textSize="14sp"
-                        android:textColor="#000" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Tổng: 250.000đ"
-                        android:textSize="14sp"
-                        android:textColor="#000" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Trạng thái: Chờ xác nhận"
-                        android:textSize="14sp"
-                        android:textColor="#FF9800" />
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
-            <!-- PHẦN 2: Chờ lấy hàng -->
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Chờ lấy hàng"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:textColor="#FF9800"
-                android:paddingTop="16dp"
-                android:paddingStart="8dp"
-                android:paddingBottom="8dp"
-                tools:ignore="RtlSymmetry" />
-
-            <!-- Một đơn hàng khác -->
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                app:cardElevation="4dp"
-                app:cardCornerRadius="8dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="12dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Mã đơn: #123457"
-                        android:textSize="14sp"
-                        android:textColor="#000" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Tổng: 180.000đ"
-                        android:textSize="14sp"
-                        android:textColor="#000" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Trạng thái: Chờ lấy hàng"
-                        android:textSize="14sp"
-                        android:textColor="#FFC107" />
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
-            <!-- Bạn có thể tiếp tục thêm phần "Đang giao", "Đã giao" tương tự -->
+            <!-- Các item sẽ được thêm vào đây bằng code -->
 
         </LinearLayout>
     </ScrollView>

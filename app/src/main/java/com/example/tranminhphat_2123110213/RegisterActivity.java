@@ -3,7 +3,6 @@ package com.example.tranminhphat_2123110213;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
-import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.EditText;
@@ -15,7 +14,18 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class RegisterActivity extends AppCompatActivity {
+
+    private static final String API_URL = "https://api.baserow.io/api/database/rows/table/604717/?user_field_names=true";
+    private static final String TOKEN = "TOKEN A1Qn1X9pYbQyNahPGDWHlEdpbMd6qDBj"; // 🔒 Thay bằng token của bạn
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,13 +38,13 @@ public class RegisterActivity extends AppCompatActivity {
             return insets;
         });
 
-
         EditText fullName = findViewById(R.id.editTextFullName);
         EditText email = findViewById(R.id.editTextEmail);
         EditText password = findViewById(R.id.editTextPassword);
         EditText confirmPassword = findViewById(R.id.editTextConfirmPassword);
         Button btnRegister = findViewById(R.id.btnRegister);
         TextView textBackToLogin = findViewById(R.id.textBackToLogin);
+
         textBackToLogin.setOnClickListener(v -> finish());
 
         btnRegister.setOnClickListener(v -> {
@@ -63,14 +73,45 @@ public class RegisterActivity extends AppCompatActivity {
                 return;
             }
 
-            // TODO: Xử lý đăng ký (gọi API hoặc lưu SQLite...)
-            Toast.makeText(this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
-            new android.os.Handler().postDelayed(() -> {
-                Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
-                startActivity(intent);
-                finish(); // đóng RegisterActivity để không quay lại bằng nút Back
-            }, 500);
-        });
+            // ✅ Gửi dữ liệu lên API Baserow
+            try {
+                JSONObject jsonBody = new JSONObject();
+                jsonBody.put("fullname", name);
+                jsonBody.put("email", mail);
+                jsonBody.put("password", pass);
 
+                JsonObjectRequest request = new JsonObjectRequest(
+                        Request.Method.POST,
+                        API_URL,
+                        jsonBody,
+                        response -> {
+                            Toast.makeText(this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
+                            new android.os.Handler().postDelayed(() -> {
+                                startActivity(new Intent(this, LoginActivity.class));
+                                finish();
+                            }, 100);
+                        },
+                        error -> {
+                            Toast.makeText(this, "Lỗi đăng ký: " + error.getMessage(), Toast.LENGTH_LONG).show();
+                            error.printStackTrace();
+                        }
+                ) {
+                    @Override
+                    public java.util.Map<String, String> getHeaders() {
+                        java.util.Map<String, String> headers = new java.util.HashMap<>();
+                        headers.put("Authorization", TOKEN);
+                        headers.put("Content-Type", "application/json");
+                        return headers;
+                    }
+                };
+
+                RequestQueue queue = Volley.newRequestQueue(this);
+                queue.add(request);
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+                Toast.makeText(this, "Lỗi định dạng JSON", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

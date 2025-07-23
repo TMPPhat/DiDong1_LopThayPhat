@@ -20,7 +20,7 @@
         <ImageView
             android:id="@+id/imageViewSanPham"
             android:layout_width="match_parent"
-            android:layout_height="140dp"
+            android:layout_height="200dp"
             android:contentDescription="@string/app_name"
             android:scaleType="centerCrop" />
 
@@ -28,6 +28,8 @@
             android:id="@+id/textViewTen"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:ellipsize="end"
             android:paddingTop="6dp"
             android:textColor="#333333"
             android:textSize="13sp"

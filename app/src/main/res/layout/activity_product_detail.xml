@@ -216,15 +216,11 @@
                         <ImageView
                             android:layout_width="80dp"
                             android:layout_height="80dp"
-                            android:src="@drawable/day_chuyen_vang_hong_00a9ab1338"
+                            android:src="@drawable/bang_do_hoa_vang"
                             android:scaleType="centerCrop"
                             android:layout_marginEnd="6dp"/>
 
-                        <ImageView
-                            android:layout_width="80dp"
-                            android:layout_height="80dp"
-                            android:src="@drawable/day_chuyen_vang_hong_00a9ab1338"
-                            android:scaleType="centerCrop"/>
+
                     </LinearLayout>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -272,12 +268,12 @@
                         android:layout_height="80dp"
                         android:layout_marginEnd="6dp"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/day_chuyen_vang_hong_00a9ab1338" />
+                        android:src="@drawable/nhan_cuoi_hoang_gia" />
 
                     <ImageView
                         android:layout_width="80dp"
                         android:layout_height="80dp"
-                        android:src="@drawable/day_chuyen_vang_hong_00a9ab1338"
+                        android:src="@drawable/dong_ho_day_da_cao_cap"
                         android:scaleType="centerCrop"
                         android:layout_marginEnd="6dp"/>
                 </LinearLayout>

@@ -185,9 +185,19 @@
                             android:id="@+id/radioOnline"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Chuyển khoản ngân hàng"
+                            android:text="Chuyển khoản ngân hàng (QR)"
                             android:textColor="@android:color/black" />
                     </RadioGroup>
+
+                    <!-- Hiển thị mã QR chuyển khoản -->
+                    <ImageView
+                        android:id="@+id/qrImageView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitCenter"
+                        android:visibility="gone" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -215,7 +225,6 @@
                         android:textStyle="bold"
                         android:layout_marginBottom="8dp" />
 
-                    <!-- Nơi hiển thị danh sách sản phẩm -->
                     <LinearLayout
                         android:id="@+id/cartItemsContainer"
                         android:layout_width="match_parent"
@@ -223,7 +232,6 @@
                         android:orientation="vertical" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
-
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 </RelativeLayout>

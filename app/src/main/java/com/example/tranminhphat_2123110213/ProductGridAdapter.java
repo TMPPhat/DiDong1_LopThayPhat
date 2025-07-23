@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -29,17 +28,17 @@ public class ProductGridAdapter extends BaseAdapter {
     }
 
     @Override
-    public Object getItem(int i) {
-        return products.get(i);
+    public Object getItem(int position) {
+        return products.get(position);
     }
 
     @Override
-    public long getItemId(int i) {
-        return i;
+    public long getItemId(int position) {
+        return position;
     }
 
     @Override
-    public View getView(int i, View convertView, ViewGroup parent) {
+    public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null)
             convertView = LayoutInflater.from(context).inflate(R.layout.item_products, parent, false);
 
@@ -47,29 +46,31 @@ public class ProductGridAdapter extends BaseAdapter {
         ImageView img = convertView.findViewById(R.id.imageViewSanPham);
         TextView txtTen = convertView.findViewById(R.id.textViewTen);
         TextView txtGia = convertView.findViewById(R.id.textViewGia);
-        TextView txtDaBan = convertView.findViewById(R.id.textViewDaBan);
+        TextView txtDaXem = convertView.findViewById(R.id.textViewDaBan);
         CardView cardView = convertView.findViewById(R.id.cardViewSanPham);
 
         // Gán dữ liệu
-        Products product = products.get(i);
-        img.setImageResource(product.imageResId);
-        txtTen.setText(product.tenSanPham);
-        txtGia.setText("Giá: " + product.gia + "₫");
-        txtDaBan.setText("Đã bán: " + product.daBan);
+        Products product = products.get(position);
 
-        // Click ở toàn bộ item
-        cardView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, ProductDetailActivity.class);
-                intent.putExtra("tenSanPham", product.tenSanPham);
-                intent.putExtra("imageResId", product.imageResId);
-                intent.putExtra("gia", product.gia);
-                intent.putExtra("daBan", product.daBan);
-                context.startActivity(intent);
-            }
+        // ✅ Load ảnh từ resource nội bộ
+        img.setImageResource(product.getImageResId());
+
+        txtTen.setText(product.getProduct_name());
+        txtGia.setText("Giá: " + Utils.dinhDangTienVietNam(product.getPrice()));
+        txtDaXem.setText("Lượt xem: " + product.getViews());
+
+        // ✅ Khi bấm vào sản phẩm
+        cardView.setOnClickListener(v -> {
+            Intent intent = new Intent(context, ProductDetailActivity.class);
+            intent.putExtra("product_id", product.getId());
+            intent.putExtra("tenSanPham", product.getProduct_name());
+            intent.putExtra("imageResId", product.getImageResId());  // ✅ Dùng imageResId
+            intent.putExtra("gia", product.getPrice());
+            intent.putExtra("views", product.getViews());
+            intent.putExtra("brand", product.getBrand());
+            context.startActivity(intent);
         });
+
         return convertView;
     }
-
 }
